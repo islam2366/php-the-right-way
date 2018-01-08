@@ -1,21 +1,21 @@
 ---
-title:   Working with UTF-8
+title:   UTF-8 নিয়ে কাজ করা
 isChild: true
 anchor:  php_and_utf8
 ---
 
-## Working with UTF-8 {#php_and_utf8_title}
+## UTF-8 নিয়ে কাজ করা {#php_and_utf8_title}
 
-_This section was originally written by [Alex Cabal](https://alexcabal.com/) over at 
-[PHP Best Practices](https://phpbestpractices.org/#utf-8) and has been used as the basis for our own UTF-8 advice_.
+_এই অংশটি মূলত [Alex Cabal](https://alexcabal.com/) এর লিখা থেকে হুবহু অনুবাদ করা হয়েছে যা [PHP Best Practices]
+(https://phpbestpractices.org/#utf-8) এ পাওয়া যাবে এবং এটি UTF-8 এর জন্য আমাদের নিজস্ব উপদেশগুলোর মূল ভিত্তি হিসেবেও কাজ করছে।_
 
 ### There's no one-liner. Be careful, detailed, and consistent.
 
-Right now PHP does not support Unicode at a low level. There are ways to ensure that UTF-8 strings are processed OK,
-but it's not easy, and it requires digging in to almost all levels of the web app, from HTML to SQL to PHP. We'll aim
-for a brief, practical summary.
+এখন PHP লো লেভেল এর ইউনিকোড সমর্থন করে না। UTF-8 স্ট্রিংগুলি ঠিক আছে কিনা তা নিশ্চিত করার কিছু উপায় রয়েছে,
+তবে তা খুব সহজ না, এবং এর জন্য ওয়েব অ্যাপ এর প্রায় সকল স্তর সম্বন্ধে ভাল ধারণা থাকা প্রয়োজন, HTML থেকে শুরু করে SQL এমনকি PHP সম্বন্ধেও।
+আমরা এখানে খুব সংক্ষেপে এগুলো আলোচনা করব।
 
-### UTF-8 at the PHP level
+### PHP লেভেলে UTF-8 
 
 The basic string operations, like concatenating two strings and assigning strings to variables, don't need anything
 special for UTF-8. However, most string functions, like `strpos()` and `strlen()`, do need special consideration. These
@@ -47,7 +47,7 @@ fall back to non UTF-8 functions if not.
 [Multibyte String Extension]: http://php.net/book.mbstring
 [patchwork/utf8]: https://packagist.org/packages/patchwork/utf8
 
-### UTF-8 at the Database level
+### ডেটাবেস লেভেলে UTF-8 
 
 If your PHP script accesses MySQL, there's a chance your strings could be stored as non-UTF-8 strings in the database
 even if you follow all of the precautions above.
@@ -59,7 +59,7 @@ example code below. This is _critically important_.
 Note that you must use the `utf8mb4` character set for complete UTF-8 support, not the `utf8` character set! See
 Further Reading for why.
 
-### UTF-8 at the browser level
+### ব্রাউজার লেভেলে UTF-8 
 
 Use the `mb_http_output()` function to ensure that your PHP script outputs UTF-8 strings to your browser.
 
