@@ -17,14 +17,14 @@ _এই অংশটি মূলত [Alex Cabal](https://alexcabal.com/) এর
 
 ### PHP লেভেলে UTF-8 
 
-The basic string operations, like concatenating two strings and assigning strings to variables, don't need anything
-special for UTF-8. However, most string functions, like `strpos()` and `strlen()`, do need special consideration. These
-functions often have an `mb_*` counterpart: for example, `mb_strpos()` and `mb_strlen()`. These `mb_*` strings are made
-available to you via the [Multibyte String Extension], and are specifically designed to operate on Unicode strings.
+বেসিক string অপারেশন, যেমন দুইটি string এর concatenation এবং string কে ভেরিয়েবল এ অ্যাসাইন করার জন্য UTF-8 এর আলাদা কোন কিছুর
+প্রয়োজন হয় না। তবে, বেশিরভাগ string ফাংশন, যেমন `strpos()` এবং `strlen()` এর ক্ষেত্রে বিশেষ নিয়ম মেনে চলতে হয়। এসব ফাংশনে অনেক
+সময় `mb_*` অংশটি যুক্ত থাকেঃ উদাহরণস্বরূপ, `mb_strpos()` এবং `mb_strlen()`। এসব `mb_*` string গুলো [Multibyte String Extension]
+এর মাধ্যমে পাওয়া যায় এবং এগুলো Unicode string এর সাথে ব্যবহার উপযোগী করেই ডিজাইন করা হয়েছে।
 
-You must use the `mb_*` functions whenever you operate on a Unicode string. For example, if you use `substr()` on a
-UTF-8 string, there's a good chance the result will include some garbled half-characters. The correct function to use
-would be the multibyte counterpart, `mb_substr()`.
+যখনই আপনি কোন Unicode string নিয়ে কাজ করবেন, আপনাকে অবশ্যই `mb_*` ফাংশন ব্যবহার করতে হবে। উদাহরণস্বরূপ, আপনি যদি কোন UTF-8 string 
+এ `substr()` ব্যবহার করেন, তবে আউটপুটে কিছু আবদ্ধ অর্ধ-অক্ষর থাকার সম্ভাবনা অনেক বেশি। এক্ষেত্রে সঠিক আউটপুটের জন্য উক্ত ফাংশনের বদলে
+`mb_substr()` ব্যবহার করাই শ্রেয়।
 
 The hard part is remembering to use the `mb_*` functions at all times. If you forget even just once, your Unicode
 string has a chance of being garbled during further processing.
@@ -61,12 +61,12 @@ Further Reading for why.
 
 ### ব্রাউজার লেভেলে UTF-8 
 
-Use the `mb_http_output()` function to ensure that your PHP script outputs UTF-8 strings to your browser.
+PHP স্ক্রিপ্ট এর মাধ্যমে ব্রাউজারে UTF-8 string এর সঠিক আউটপুট নিশ্চিতকরণের জন্য `mb_http_output()` ফাংশনটি ব্যবহার করুন।
 
-The browser will then need to be told by the HTTP response that this page should be considered as UTF-8. The historic
-approach to doing that was to include the [charset `<meta>` tag](http://htmlpurifier.org/docs/enduser-utf8.html) in
-your page's `<head>` tag. This approach is perfectly valid, but setting the charset in the `Content-Type` header is
-actually [much faster](https://developers.google.com/speed/docs/best-practices/rendering#SpecifyCharsetEarly).
+এরপর HTTP response এর মাধ্যমে ব্রাউজারকে জানিয়ে দিতে হবে যে এই পেইজটিতে UTF-8 ব্যবহৃত হয়েছে। এটি করার জন্য যে পদ্ধতিটি বহুলভাবে ব্যবহৃত হয়ে
+আসছে তা হল আপনার পেইজ এর `<head>` ট্যাগে [charset `<meta>` tag](http://htmlpurifier.org/docs/enduser-utf8.html) সংযোজন করা।
+এই পদ্ধতিটি একেবারেই সঠিক, তবে `Content-Type` header এ charset সেটিং করার মাধ্যমে এটি
+[অনেক তাড়াতাড়ি](https://developers.google.com/speed/docs/best-practices/rendering#SpecifyCharsetEarly) করা সম্ভব।
 
 {% highlight php %}
 <?php
@@ -128,7 +128,7 @@ header('Content-Type: text/html; charset=UTF-8');
 </html>
 {% endhighlight %}
 
-### Further reading
+### আরও পড়ুন
 
 * [PHP Manual: String Operations](http://php.net/language.operators.string)
 * [PHP Manual: String Functions](http://php.net/ref.strings)
